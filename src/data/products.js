@@ -23,7 +23,7 @@ export const generateProducts = () => {
       image: publicUrl,
       sizes: "P ao 5XL",
       badge: "Novo",
-      link: "https://wa.me/559181349126"
+      link: "https://wa.me/5591986145120"
     });
   }
   return products;
@@ -39,7 +39,7 @@ const initialProducts = [
     image: "/jersey1.jpg",
     sizes: "P ao 5XL",
     badge: "Mais Vendida",
-    link: "https://wa.me/559181349126"
+    link: "https://wa.me/5591986145120"
   },
   {
     id: 2,
@@ -48,7 +48,7 @@ const initialProducts = [
     image: "/jersey2.jpg",
     sizes: "P ao 5XL",
     badge: "1:1 Tailandesa",
-    link: "https://wa.me/559181349126"
+    link: "https://wa.me/5591986145120"
   },
   {
     id: 3,
@@ -57,7 +57,7 @@ const initialProducts = [
     image: "/jersey3.jpg",
     sizes: "P ao 5XL",
     badge: "Exclusiva",
-    link: "https://wa.me/559181349126"
+    link: "https://wa.me/5591986145120"
   }
 ];
 

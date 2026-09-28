@@ -8,7 +8,7 @@ const CustomOrder = () => {
 
   const handleOrder = (e) => {
     e.preventDefault();
-    const phoneNumber = "559181349126";
+    const phoneNumber = "5591986145120";
     
     let message = `Olá, gostaria de fazer uma encomenda personalizada! 🚀\n\n`;
     if (imageUrl) message += `*Referência (Link/Imagem)*: ${imageUrl}\n`;

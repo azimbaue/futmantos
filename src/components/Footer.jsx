@@ -5,8 +5,8 @@ const Footer = () => {
     <footer id="contato" className="footer">
       <h2>Fale Conosco</h2>
       <div className="footer-contact">
-        <a href="https://wa.me/559181349126" className="footer-link" target="_blank" rel="noopener noreferrer">
-          WhatsApp: (91) 8134-9126
+        <a href="https://wa.me/5591986145120" className="footer-link" target="_blank" rel="noopener noreferrer">
+          WhatsApp: (91) 98614-5120
         </a>
       </div>
       <p className="product-sizes">Siga-nos no Instagram para mais novidades!</p>
