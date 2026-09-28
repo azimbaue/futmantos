@@ -4,6 +4,7 @@ import Hero from './components/Hero';
 import VideoCarousel from './components/VideoCarousel';
 import ProductGrid from './components/ProductGrid';
 import Footer from './components/Footer';
+import CustomOrder from './components/CustomOrder';
 import { videos, allProducts } from './data/products';
 import './index.css';
 
@@ -14,6 +15,7 @@ function App() {
       <Hero />
       <VideoCarousel videos={videos} />
       <ProductGrid products={allProducts} />
+      <CustomOrder />
       <Footer />
     </div>
   );
