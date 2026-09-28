@@ -4,6 +4,8 @@ export default function ProductCard({ produto }) {
   const [isHovered, setIsHovered] = useState(false);
   const [tamanhoSelecionado, setTamanhoSelecionado] = useState('');
   const [quantidade, setQuantidade] = useState(1);
+  const [cep, setCep] = useState('');
+  const [endereco, setEndereco] = useState('');
 
   // Tratar fallback de propriedades opcionais
   const imagemPrincipal = produto.imagemFrente || produto.image;
@@ -28,9 +30,11 @@ export default function ProductCard({ produto }) {
 *Produto:* ${produto.nome} (${temporada})
 *Tamanho:* ${tamanhoSelecionado}
 *Quantidade:* ${quantidade}
+*CEP:* ${cep || 'Não informado'}
+*Endereço:* ${endereco || 'Não informado'}
 *Imagem:* ${linkProduto}
 
-Pode me repassar os valores e a disponibilidade?`;
+Pode me repassar os valores, disponibilidade e o custo do frete?`;
 
     const url = `https://wa.me/${numeroWhatsApp}?text=${encodeURIComponent(mensagem)}`;
     window.open(url, '_blank');
@@ -107,7 +111,27 @@ Pode me repassar os valores e a disponibilidade?`;
           </div>
         </div>
 
-        <div className="mt-4 pt-3 border-t border-gray-100 flex">
+        {/* Informações de Frete */}
+        <div className="mt-3 flex flex-col gap-1.5">
+          <input 
+            type="text" 
+            placeholder="Seu CEP (para frete)" 
+            className="w-full text-xs px-2 py-1.5 border border-gray-200 rounded outline-none focus:border-indigo-500 focus:bg-white bg-gray-50 transition-colors"
+            value={cep}
+            onChange={(e) => setCep(e.target.value)}
+            onClick={(e) => e.stopPropagation()}
+          />
+          <input 
+            type="text" 
+            placeholder="Endereço completo (Rua, Número, Bairro)" 
+            className="w-full text-xs px-2 py-1.5 border border-gray-200 rounded outline-none focus:border-indigo-500 focus:bg-white bg-gray-50 transition-colors"
+            value={endereco}
+            onChange={(e) => setEndereco(e.target.value)}
+            onClick={(e) => e.stopPropagation()}
+          />
+        </div>
+
+        <div className="mt-3 pt-3 border-t border-gray-100 flex">
           <button 
             onClick={handleWhatsAppClick}
             className="w-full bg-green-600 hover:bg-green-700 text-white text-sm font-medium px-4 py-2 rounded-lg transition-colors flex items-center justify-center gap-1.5 shadow-sm cursor-pointer"
