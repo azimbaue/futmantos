@@ -2,15 +2,8 @@ import React, { useState } from 'react';
 
 export default function ProductCard({ produto }) {
   const [isHovered, setIsHovered] = useState(false);
-
-  const handleWhatsAppClick = (e) => {
-    e.stopPropagation();
-    const numeroWhatsApp = "5591986145120"; // Used the number from the project data
-    const temporada = produto.temporada || "2024/25";
-    const mensagem = `Olá! Gostaria de mais informações sobre o manto: *${produto.nome}* (${temporada}). Pode me informar o valor?`;
-    const url = `https://wa.me/${numeroWhatsApp}?text=${encodeURIComponent(mensagem)}`;
-    window.open(url, '_blank');
-  };
+  const [tamanhoSelecionado, setTamanhoSelecionado] = useState('');
+  const [quantidade, setQuantidade] = useState(1);
 
   // Tratar fallback de propriedades opcionais
   const imagemPrincipal = produto.imagemFrente || produto.image;
@@ -18,10 +11,30 @@ export default function ProductCard({ produto }) {
   const versao = produto.versao || produto.badge || "Torcedor";
   const liga = produto.liga || produto.team || "Futebol";
   const temporada = produto.temporada || "2024/25";
-  
-  // Tratar tamanhos (no data.js atual os tamanhos estão como string, ex: "P ao 5XL")
-  // Aqui vamos simular que os principais estão disponíveis se não houver um array específico
   const tamanhosDisponiveis = produto.tamanhosDisponiveis || ['P', 'M', 'G', 'GG', 'XG'];
+
+  const handleWhatsAppClick = (e) => {
+    e.stopPropagation();
+    
+    if (!tamanhoSelecionado) {
+      alert("Por favor, selecione um tamanho antes de consultar os valores.");
+      return;
+    }
+
+    const numeroWhatsApp = "5591986145120"; // Número real do projeto
+    const linkProduto = `${window.location.origin}${imagemPrincipal}`;
+    const mensagem = `Olá! Gostaria de consultar os valores do seguinte manto:
+
+*Produto:* ${produto.nome} (${temporada})
+*Tamanho:* ${tamanhoSelecionado}
+*Quantidade:* ${quantidade}
+*Imagem:* ${linkProduto}
+
+Pode me repassar os valores e a disponibilidade?`;
+
+    const url = `https://wa.me/${numeroWhatsApp}?text=${encodeURIComponent(mensagem)}`;
+    window.open(url, '_blank');
+  };
 
   return (
     <div 
@@ -55,23 +68,43 @@ export default function ProductCard({ produto }) {
           </h3>
         </div>
 
-        <div className="mt-3 flex items-center gap-1.5 flex-wrap">
-          <span className="text-xs text-gray-500 mr-1">Tam:</span>
-          {['P', 'M', 'G', 'GG', 'XG'].map((tamanho) => {
-            const disponivel = tamanhosDisponiveis.includes(tamanho);
-            return (
-              <span 
-                key={tamanho} 
-                className={`text-xs px-2 py-0.5 rounded font-medium border ${
-                  disponivel 
-                    ? 'border-gray-300 text-gray-700 bg-white' 
-                    : 'border-gray-200 text-gray-300 bg-gray-50 line-through'
-                }`}
-              >
-                {tamanho}
-              </span>
-            );
-          })}
+        {/* Seleção de Tamanho e Quantidade */}
+        <div className="mt-3 flex items-center justify-between gap-2">
+          <div className="flex items-center gap-1 flex-wrap flex-1">
+            <span className="text-xs text-gray-500 mr-0.5">Tam:</span>
+            {['P', 'M', 'G', 'GG', 'XG'].map((tamanho) => {
+              const disponivel = tamanhosDisponiveis.includes(tamanho);
+              const isSelected = tamanhoSelecionado === tamanho;
+              return (
+                <button 
+                  key={tamanho}
+                  onClick={(e) => { e.stopPropagation(); if (disponivel) setTamanhoSelecionado(tamanho); }}
+                  disabled={!disponivel}
+                  className={`text-xs px-2 py-0.5 rounded font-medium border transition-colors cursor-pointer ${
+                    !disponivel 
+                      ? 'border-gray-200 text-gray-300 bg-gray-50 line-through cursor-not-allowed'
+                      : isSelected
+                        ? 'border-indigo-600 bg-indigo-50 text-indigo-700 shadow-sm'
+                        : 'border-gray-300 text-gray-700 bg-white hover:border-indigo-400'
+                  }`}
+                >
+                  {tamanho}
+                </button>
+              );
+            })}
+          </div>
+          
+          <div className="flex items-center border border-gray-200 rounded flex-shrink-0 bg-white">
+            <button 
+              onClick={(e) => { e.stopPropagation(); setQuantidade(Math.max(1, quantidade - 1)) }}
+              className="px-2 py-0.5 bg-gray-50 hover:bg-gray-100 text-gray-600 font-bold border-r border-gray-200"
+            >-</button>
+            <span className="px-2 py-0.5 text-xs font-medium text-gray-800 w-6 text-center">{quantidade}</span>
+            <button 
+              onClick={(e) => { e.stopPropagation(); setQuantidade(quantidade + 1) }}
+              className="px-2 py-0.5 bg-gray-50 hover:bg-gray-100 text-gray-600 font-bold border-l border-gray-200"
+            >+</button>
+          </div>
         </div>
 
         <div className="mt-4 pt-3 border-t border-gray-100 flex">
