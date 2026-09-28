@@ -27,19 +27,19 @@ const Header = () => {
       {/* Navigation Links */}
       <nav className={`nav-links ${
         isMenuOpen 
-          ? 'flex flex-col absolute top-[85px] left-0 w-full bg-[#050a15] p-6 border-b border-gray-700 shadow-xl gap-4 items-center z-50' 
-          : 'hidden md:flex md:items-center gap-6'
+          ? 'grid grid-cols-2 absolute top-[85px] left-0 w-full bg-[#050a15] p-6 border-b border-gray-700 shadow-xl gap-4 text-center z-50' 
+          : 'hidden md:flex md:flex-wrap md:justify-end md:items-center gap-4 lg:gap-6'
       }`}>
-        <a href="#inicio" onClick={() => setIsMenuOpen(false)}>Início</a>
-        <a href="#produtos" onClick={() => setIsMenuOpen(false)}>Produtos</a>
-        <a href="#encomenda" onClick={() => setIsMenuOpen(false)}>Envio Personalizado</a>
-        <a href="#contato" onClick={() => setIsMenuOpen(false)}>Contato</a>
+        <a href="#inicio" onClick={() => setIsMenuOpen(false)} className="py-2">Início</a>
+        <a href="#produtos" onClick={() => setIsMenuOpen(false)} className="py-2">Produtos</a>
+        <a href="#encomenda" onClick={() => setIsMenuOpen(false)} className="py-2">Personalizado</a>
+        <a href="#contato" onClick={() => setIsMenuOpen(false)} className="py-2">Contato</a>
         <button 
           onClick={() => { window.print(); setIsMenuOpen(false); }}
-          className="mt-2 md:mt-0 md:ml-4 bg-accent text-primary px-4 py-2 rounded-full font-bold text-sm hover:scale-105 transition-transform flex items-center justify-center gap-2 shadow-lg w-full md:w-auto"
+          className="col-span-2 mt-2 md:mt-0 md:ml-2 bg-accent text-primary px-4 py-2 rounded-full font-bold text-sm hover:scale-105 transition-transform flex items-center justify-center gap-2 shadow-lg w-full md:w-auto"
         >
           <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><polyline points="6 9 6 2 18 2 18 9"></polyline><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"></path><rect x="6" y="14" width="12" height="8"></rect></svg>
-          Gerar Catálogo PDF
+          Gerar PDF
         </button>
       </nav>
     </header>
