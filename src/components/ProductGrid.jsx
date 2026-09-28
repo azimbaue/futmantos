@@ -1,23 +1,5 @@
 import React, { useState } from 'react';
-
-const ProductCard = ({ product }) => {
-  return (
-    <div className="product-card" onClick={() => window.open(product.link, '_blank')}>
-      <div className="product-image-container">
-        <img src={product.image} alt={product.name} className="product-image" />
-        {product.badge && <span className="product-badge">{product.badge}</span>}
-      </div>
-      <div className="product-info">
-        <h3 className="product-title">{product.name}</h3>
-        <p className="product-desc">{product.team}</p>
-        <div className="product-meta">
-          <div className="product-sizes">Tamanhos: <span>{product.sizes}</span></div>
-          <button className="btn-buy">Comprar</button>
-        </div>
-      </div>
-    </div>
-  );
-};
+import ProductCard from './ProductCard';
 
 const ProductGrid = ({ products }) => {
   const [selectedTeam, setSelectedTeam] = useState('Todos');
@@ -48,7 +30,7 @@ const ProductGrid = ({ products }) => {
 
       <div className="products-grid">
         {filteredProducts.map((product) => (
-          <ProductCard key={product.id} product={product} />
+          <ProductCard key={product.id} produto={product} />
         ))}
       </div>
     </section>
