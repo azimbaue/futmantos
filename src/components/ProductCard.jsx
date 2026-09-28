@@ -72,7 +72,9 @@ Pode me repassar os valores, disponibilidade e o custo do frete?`;
           </h3>
         </div>
 
-        {/* Seleção de Tamanho e Quantidade */}
+        {/* ÁREA INTERATIVA (Escondida na Impressão) */}
+        <div className="print:hidden flex flex-col flex-grow justify-between">
+          {/* Seleção de Tamanho e Quantidade */}
         <div className="mt-3 flex items-center justify-between gap-2">
           <div className="flex items-center gap-1 flex-wrap flex-1">
             <span className="text-xs text-gray-500 mr-0.5">Tam:</span>
@@ -138,13 +140,20 @@ Pode me repassar os valores, disponibilidade e o custo do frete?`;
           </div>
         </div>
 
-        <div className="mt-3 pt-3 border-t border-gray-100 flex">
-          <button 
-            onClick={handleWhatsAppClick}
-            className="w-full bg-green-600 hover:bg-green-700 text-white text-sm font-medium px-4 py-2 rounded-lg transition-colors flex items-center justify-center gap-1.5 shadow-sm cursor-pointer"
-          >
-            Consultar Valores
-          </button>
+          <div className="mt-3 pt-3 border-t border-gray-100 flex">
+            <button 
+              onClick={handleWhatsAppClick}
+              className="w-full bg-green-600 hover:bg-green-700 text-white text-sm font-medium px-4 py-2 rounded-lg transition-colors flex items-center justify-center gap-1.5 shadow-sm cursor-pointer"
+            >
+              Consultar Valores
+            </button>
+          </div>
+        </div>
+
+        {/* ÁREA DE IMPRESSÃO (Escondida na Tela) */}
+        <div className="hidden print:block mt-3 pt-2 border-t border-gray-300">
+          <p className="text-[11px] text-gray-600"><strong>Tamanhos Disponíveis:</strong> {tamanhosDisponiveis.join(', ')}</p>
+          <p className="text-base font-extrabold text-gray-900 mt-1">R$ 150,00</p>
         </div>
       </div>
     </div>

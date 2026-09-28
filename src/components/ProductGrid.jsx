@@ -17,7 +17,7 @@ const ProductGrid = ({ products }) => {
       <h2 className="section-title">Nosso Catálogo</h2>
       
       {/* Team Filter */}
-      <div className="team-filter">
+      <div className="team-filter print:hidden">
         {teams.map(team => (
           <button 
             key={team} 
@@ -29,7 +29,7 @@ const ProductGrid = ({ products }) => {
         ))}
       </div>
 
-      <div className="products-grid">
+      <div className="products-grid print:grid-cols-3 print:gap-4 print:w-full">
         {filteredProducts.map((product) => (
           <ProductCard key={product.id} produto={product} />
         ))}
