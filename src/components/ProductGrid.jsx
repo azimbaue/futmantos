@@ -2,14 +2,15 @@ import React, { useState } from 'react';
 import ProductCard from './ProductCard';
 
 const ProductGrid = ({ products }) => {
-  const [selectedTeam, setSelectedTeam] = useState('Todos');
+  const [selectedTeam, setSelectedTeam] = useState('Destaques');
   
-  // Get unique teams
-  const teams = ['Todos', ...new Set(products.map(p => p.team))];
+  // Get unique teams, ensure Destaques is first if it exists
+  const uniqueTeams = [...new Set(products.map(p => p.team))];
+  const teams = uniqueTeams.includes('Destaques') 
+    ? ['Destaques', ...uniqueTeams.filter(t => t !== 'Destaques')]
+    : uniqueTeams;
   
-  const filteredProducts = selectedTeam === 'Todos' 
-    ? products 
-    : products.filter(p => p.team === selectedTeam);
+  const filteredProducts = products.filter(p => p.team === selectedTeam);
 
   return (
     <section id="produtos" className="products-section">
