@@ -112,23 +112,30 @@ Pode me repassar os valores, disponibilidade e o custo do frete?`;
         </div>
 
         {/* Informações de Frete */}
-        <div className="mt-3 flex flex-col gap-1.5">
-          <input 
-            type="text" 
-            placeholder="Seu CEP (para frete)" 
-            className="w-full text-xs px-2 py-1.5 border border-gray-200 rounded outline-none focus:border-indigo-500 focus:bg-white bg-gray-50 transition-colors"
-            value={cep}
-            onChange={(e) => setCep(e.target.value)}
-            onClick={(e) => e.stopPropagation()}
-          />
-          <input 
-            type="text" 
-            placeholder="Endereço completo (Rua, Número, Bairro)" 
-            className="w-full text-xs px-2 py-1.5 border border-gray-200 rounded outline-none focus:border-indigo-500 focus:bg-white bg-gray-50 transition-colors"
-            value={endereco}
-            onChange={(e) => setEndereco(e.target.value)}
-            onClick={(e) => e.stopPropagation()}
-          />
+        <div className="mt-4 flex flex-col gap-3">
+          <div className="flex flex-col gap-1">
+            <label className="text-[11px] font-bold text-gray-500 uppercase tracking-wide ml-1">CEP (Para Cálculo do Frete)</label>
+            <input 
+              type="text" 
+              placeholder="Ex: 00000-000" 
+              className="w-full text-sm px-3 py-2 border border-gray-200 rounded-md outline-none focus:border-indigo-500 focus:bg-white bg-gray-50 transition-colors"
+              value={cep}
+              onChange={(e) => setCep(e.target.value)}
+              onClick={(e) => e.stopPropagation()}
+            />
+          </div>
+          
+          <div className="flex flex-col gap-1">
+            <label className="text-[11px] font-bold text-gray-500 uppercase tracking-wide ml-1">Endereço de Entrega</label>
+            <input 
+              type="text" 
+              placeholder="Rua, Número, Bairro" 
+              className="w-full text-sm px-3 py-2 border border-gray-200 rounded-md outline-none focus:border-indigo-500 focus:bg-white bg-gray-50 transition-colors"
+              value={endereco}
+              onChange={(e) => setEndereco(e.target.value)}
+              onClick={(e) => e.stopPropagation()}
+            />
+          </div>
         </div>
 
         <div className="mt-3 pt-3 border-t border-gray-100 flex">
